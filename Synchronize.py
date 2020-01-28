@@ -1,9 +1,12 @@
 from SensorSynchronization.Sensor import *
+from typing import List
+# comment the following if you don't want debug mode
 import matplotlib.pyplot as plt
 import networkx as nx
 import datetime
 from uuid import uuid4
-from typing import List
+import os
+
 
 
 class Synchronize(object):
@@ -14,7 +17,12 @@ class Synchronize(object):
         self.groups = []
         self.final_sets = []
         self.accuracy_similarity = accuracy_similarity
-        self.debug = False
+        self.debug = False # by setting true, a graph for a different state will be created
+
+        if self.debug:
+            if not os.path.exists('graphs'):
+                os.makedirs('graphs')
+
 
     def synchronize(self) -> List[SensorGroup]:
         self.create_groups()  # creating nodes(group of sensors) s.t. two sensors are in the same group if they have signal from the same set of TXs

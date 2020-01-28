@@ -1,13 +1,14 @@
-import sys
-from os import path
+# import sys
+# from os import path
 import numpy as np
-#print sys.path
-# sys.path.append(path.abspath('..\\MovingTransmitter\\'))
-from Commons.Point import *
+import math
+# #print sys.path
+# # sys.path.append(path.abspath('..\\MovingTransmitter\\'))
+# from Commons.Point import *
 
 
 class Sensor(object):
-    def __init__(self, id, location=Point(), signal=[], noise_floor=-90, keep_interval=True, cost=0, std=1,
+    def __init__(self, id, location=None, signal=[], noise_floor=-90, keep_interval=True, cost=0, std=1,
                  accuracy_parameter=1):
         self.location = location
         self.signal = signal
@@ -50,22 +51,6 @@ class Sensor(object):
                     number_of_pulse += 1
         return [number_of_pulse, number_of_non_noise_value]
 
-    # def zero_one_sequence(self, keep_intervals = True):
-    #     if keep_intervals:
-    #         for i in range(self.size):
-    #             if self.signal[i] > self.noise_floor:
-    #                 self.zero_one_signal[i] = True
-    #     else:
-    #         if self.signal[0] > self.noise_floor:
-    #             self.zero_one_signal[0] = True
-    #
-    #         for i in range(1, self.size):
-    #             # if self.signal[i] > self.noise_floor and  self.signal[i - 1] <= self.noise_floor:
-    #             if self.signal[i - 1] <= self.noise_floor < self.signal[i]:
-    #                 self.zero_one_signal[i] = True
-    #             elif self.signal[i - 1] > self.noise_floor >= self.signal[i]:
-    #                 self.zero_one_signal[i - 1] = True
-    #     self.number_of_one = sum(self.zero_one_signal)
     def zero_one_sequence(self, keep_intervals = True):
         decimal_signal = np.power(10, np.divide(self.signal, 10))
         threshold = math.pow(10, self.noise_floor/10)
@@ -152,15 +137,6 @@ class Sensor(object):
             b = np.zeros(size1 - size2, dtype=signal2.dtype)
             signal2 = np.concatenate((signal2, b))
         out = np.multiply(signal1, signal2[:size1])
-        #out = np.zeros((1, min(size1, size2)), dtype=bool)
-        # out = np.zeros((1, size1), dtype=bool)
-        # start = shift
-        # if size1 < size2:
-        #     end = min(size2, shift+size1)
-        #     out = np.multiply(signal1[:end-start], signal2[start:end])
-        # else:
-        #     end = min(size1, shift+size2)
-        #     out = np.multiply(signal2[:end-start], signal1[start:end])
         return out, sum(out)
 
 
