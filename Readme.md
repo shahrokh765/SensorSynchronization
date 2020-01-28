@@ -1,4 +1,4 @@
-# Transmitter Localization under Time-Skewed Observations
+# Multiple Transmitter Localization under Time-Skewed Observations
 
 [Multiple Transmitter Localization under Time-Skewed Observations](https://www3.cs.stonybrook.edu/~mdasari/assets/pdf/dyspan19.pdf) [IEEE DySPAN 2019] 
 
@@ -80,4 +80,4 @@ set 3:		 Sensors:{[2, 3, 4, 5, 6, 7, 8, 9]}
 ```
 
 ## Acknowledgments
-This is in collaboration with **Mohammad Gaderibaneh, Mallesham Dasari, Prof. Himanshu Gupta**. We would like to thank ** Prof. Samir Das** for his initial help in problem formulation. 
+This is in collaboration with **Mohammad Gaderibaneh, Mallesham Dasari, Prof. Himanshu Gupta**. We would like to thank **Prof. Samir Das** for his initial help in problem formulation. 
