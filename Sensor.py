@@ -2,7 +2,7 @@ import sys
 from os import path
 import numpy as np
 #print sys.path
-sys.path.append(path.abspath('..\\MovingTransmitter\\'))
+# sys.path.append(path.abspath('..\\MovingTransmitter\\'))
 from Commons.Point import *
 
 
@@ -149,7 +149,7 @@ class Sensor(object):
             signal2 = signal2[-shift:]
         size2 = len(signal2)
         if size1 > size2:
-            b = np.zeros( size1 - size2, dtype=signal2.dtype)
+            b = np.zeros(size1 - size2, dtype=signal2.dtype)
             signal2 = np.concatenate((signal2, b))
         out = np.multiply(signal1, signal2[:size1])
         #out = np.zeros((1, min(size1, size2)), dtype=bool)
@@ -165,17 +165,17 @@ class Sensor(object):
 
 
 class SensorGroup(object):
-    def __init__(self, id, signal, group_list=[], accuracy_parameter=1):
+    def __init__(self, id, signal, sensors_list=[], accuracy_parameter=1):
         self.id = id
         self.sensor = Sensor(id=None, location=None, signal=signal, noise_floor=0, accuracy_parameter=accuracy_parameter)
-        self.group_list = group_list
+        self.sensors_list = sensors_list  # a list that holds sensors id belonging to the group
         self.is_exist = True
         self.observation_vector = None
 
     def append_sensor(self, id):
-        self.group_list.append(id)
+        self.sensors_list.append(id)
 
     def append_group(self, list_sensor):
-        self.group_list = self.group_list + list_sensor
-        self.group_list = set(self.group_list)
-        self.group_list = list(self.group_list)
+        self.sensors_list += list_sensor
+        # self.group_list = set(self.group_list)
+        self.sensors_list = list(set(self.sensors_list))  # omit duplicates
