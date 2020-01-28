@@ -28,3 +28,56 @@ Finally, create a Synchronize object, passing sensor list created in previous st
 max_skew, as the only extra information about the sensors, is the maximum skew between any pair of sensors. This max_skew parameter should be in according to sensing window unit. For example, it should 50 if your sensors create power data every 10 microseconds and largest possible clock skew is in order of ~500 microseconds. minimum_interval as a parameter to define if two sensors have common set of TXs in their signal is the minimum number of pulses that a TX is sending. As mentioned before, the higher this number the more accurate and noise free results. Since Synchronize use the beginning and finishing events of pulses, provide a number less than(around 1.8) TWICE of minimum number of pulses for minimum_interval parameter. The last parameter, accuracy_similarity, is used when we want to define how similar two groups(or sensors) should be. 1 means totally similar and 0 means not similar at all.
 
 The output is a list of SensorGroup object each related to a distinct set of TXs with its list of sensor and one observation vector that can be used instead of the whole observing window.
+
+## Dependency
+We conducted experiments in the following environment:
+ - Linux
+ - Python 3.6.3
+
+## Getting Started
+Run the main.py file. You should see an output in a file 'nodes.txt', similar to what is shown below.
+
+```
+Nodes:
+
+node 0:		 Tx(s):{[0, 1, 2]}
+		list sensors:{[0]}
+
+node 1:		 Tx(s):{[1, 0]}
+		list sensors:{[1]}
+
+node 2:		 Tx(s):{[3, 2]}
+		list sensors:{[2, 6]}
+
+node 3:		 Tx(s):{[1]}
+		list sensors:{[3]}
+
+node 4:		 Tx(s):{[3, 0, 2]}
+		list sensors:{[4]}
+
+node 5:		 Tx(s):{[0, 3, 2, 1]}
+		list sensors:{[5, 8, 9]}
+
+node 6:		 Tx(s):{[2]}
+		list sensors:{[7]}
+
+node 7:		 Tx(s):{[1]}
+		list sensors:{[3, 7, 3, 7, 2, 6]}
+
+node 8:		 Tx(s):{[1]}
+		list sensors:{[3, 7, 3, 7, 2, 6]}
+
+
+Final sets:
+
+set 0:		 Sensors:{[0, 1, 3, 5, 8, 9]}
+
+set 1:		 Sensors:{[0, 2, 3, 4, 5, 6, 7, 8, 9]}
+
+set 2:		 Sensors:{[0, 1, 3, 4, 5, 7, 8, 9]}
+
+set 3:		 Sensors:{[2, 3, 4, 5, 6, 7, 8, 9]}
+```
+
+## Acknowledgments
+This is in collaboration with **Mohammad Gaderibaneh, Mallesham Dasari, Prof. Himanshu Gupta**. We would like to thank ** Prof. Samir Das** for his initial help in problem formulation. 
