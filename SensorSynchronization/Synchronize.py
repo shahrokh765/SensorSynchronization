@@ -1,10 +1,8 @@
 from SensorSynchronization.Sensor import *
 from typing import List
 # comment the following if you don't want debug mode
-import matplotlib.pyplot as plt
-import networkx as nx
-import datetime
-from uuid import uuid4
+#import matplotlib.pyplot as plt
+#import datetime
 import os
 
 
