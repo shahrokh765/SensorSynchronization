@@ -2,10 +2,8 @@
 
 [Multiple Transmitter Localization under Time-Skewed Observations](https://www3.cs.stonybrook.edu/~mdasari/assets/pdf/dyspan19.pdf) [IEEE DySPAN 2019] 
 
-If you find this useful for your research, please use the following BibTeX entry.
-
 ## Citation
-If you find this model useful for your research, please use the following BibTeX entry.
+If you find this paper useful for your research, please use the following BibTeX entry.
 <pre>
 @inproceedings{ghaderibaneh2019multiple,
   title={Multiple Transmitter Localization under Time-Skewed Observations},
